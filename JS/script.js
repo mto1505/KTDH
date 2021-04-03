@@ -1,7 +1,7 @@
 var canvas = document.getElementById('canvas'),
     pSize = 5, // pixel size
     ctx = canvas.getContext('2d'),
-    imgd,
+    imgd, defaultCanvas,
     isDrawing,
     position;
 
@@ -29,43 +29,12 @@ function drawGrid() {
     for(let i = 0; i < canvas.width; i++) {
         ctx.fillRect(i, y, 1, 1);
     }
+    defaultCanvas = ctx.getImageData(0, 0, canvas.width, canvas.height);
 }
 
-canvas.addEventListener('click', function(evt) {
-    var mousePos = getMousePos(canvas, evt);
-    position = getPixelPos(mousePos.x, mousePos.y);
-    console.log(position);
-});
-
-canvas.addEventListener('mousedown', function(evt) {
-    var mousePos = getMousePos(canvas, evt);
-    position = getPixelPos(mousePos.x, mousePos.y);
-    isDrawing = true;
-});
-
-canvas.addEventListener('mousemove', function(evt) {
-    if (isDrawing === true) {
-        drawPixel(position.x, position.y);
-        realPos = getMousePos(canvas, evt);
-        position = getPixelPos(realPos.x, realPos.y);
-    }
-});
-
-window.addEventListener('mouseup', function(evt){
-    if (isDrawing === true) {
-        drawPixel(position.x, position.y);
-        position = {x: 0, y: 0};
-        isDrawing = false;
-    }
-});
-
-document.getElementById('clearBtn').addEventListener('click', function(evt) {
-    ctx.putImageData(imgd, 0, 0);
-});
-
-document.getElementById('saveBtn').addEventListener('click', function(evt) {
+function saveCanvas() {
     imgd = ctx.getImageData(0, 0, canvas.width, canvas.height);
-});
+}
 
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
@@ -82,11 +51,12 @@ function getPixelPos(a, b) {
     }
 }
 
-function drawPixel(x, y) {
+function fillPixel(x, y) {
     ctx.fillRect(x, y, pSize, pSize);
 }
 
 function drawLine(x1, y1, x2, y2) {
+    console.log(arguments);
     if(x1 > x2) {
         [x1, y1, x2, y2] = [x2, y2, x1, y1];
     }
@@ -96,6 +66,60 @@ function drawLine(x1, y1, x2, y2) {
     for(let x = x1; x < x2; x++) {
         y = y1 + dy * (x - x1) / dx;
         pos = getPixelPos(x, y);
-        drawPixel(pos.x, pos.y)
+        fillPixel(pos.x, pos.y);
     }
 }
+
+canvas.addEventListener('click', function(evt) {
+    var mousePos = getMousePos(canvas, evt);
+    position = getPixelPos(mousePos.x, mousePos.y);
+    console.log(position);
+});
+
+canvas.addEventListener('mousedown', function(evt) {
+    var mousePos = getMousePos(canvas, evt);
+    position = getPixelPos(mousePos.x, mousePos.y);
+    isDrawing = true;
+});
+
+canvas.addEventListener('mousemove', function(evt) {
+    if (isDrawing === true) {
+        fillPixel(position.x, position.y);
+        realPos = getMousePos(canvas, evt);
+        position = getPixelPos(realPos.x, realPos.y);
+    }
+});
+
+window.addEventListener('mouseup', function(evt){
+    if (isDrawing === true) {
+        fillPixel(position.x, position.y);
+        position = {x: 0, y: 0};
+        isDrawing = false;
+    }
+});
+
+document.getElementById('testBtn').addEventListener('click', function(evt) {
+    drawLine(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height,
+        Math.random() * canvas.width,
+        Math.random() * canvas.height
+        );
+
+});
+
+document.getElementById('clearBtn').addEventListener('click', function(evt) {
+    if(imgd != null) {
+        ctx.putImageData(imgd, 0, 0);
+    } else {
+        ctx.putImageData(defaultCanvas, 0, 0);
+    }
+});
+
+document.getElementById('saveBtn').addEventListener('click', function(evt) {
+    imgd = ctx.getImageData(0, 0, canvas.width, canvas.height);
+});
+
+document.getElementById('resetBtn').addEventListener('click', function(evt) {
+    ctx.putImageData(defaultCanvas, 0, 0);
+});
