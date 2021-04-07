@@ -18,6 +18,7 @@ function drawGrid() {
             ctx.fillRect(i, j, 1, 1);
         }
     }
+    
     // vẽ hệ tọa độ
     ctx.fillStyle = '#2e89ff';
     let x = canvas.width/2,
@@ -25,9 +26,17 @@ function drawGrid() {
 
     for(let i = 0; i < canvas.height; i++) {
         ctx.fillRect(x, i, 1, 1);
+        setTimeout(function(){
+
+
+        }, 1000); 
     }
     for(let i = 0; i < canvas.width; i++) {
         ctx.fillRect(i, y, 1, 1);
+        setTimeout(function(){
+
+
+        }, 1000); 
     }
     defaultCanvas = ctx.getImageData(0, 0, canvas.width, canvas.height);
 }
@@ -55,6 +64,9 @@ function fillPixel(x, y) {
     pos = getPixelPos(x, y);
     ctx.fillRect(pos.x, pos.y, pSize, pSize);
 }
+function putPixel(x, y) {
+    ctx.fillRect((x-1)*pSize, (y-1)*pSize, pSize, pSize);
+}
 
 function drawLine(x0, y0, x1, y1) {
     // DDA algorithm
@@ -74,6 +86,169 @@ function drawLine(x0, y0, x1, y1) {
         fillPixel(x, y);
     }
 }
+
+function bresenhamLine(x1, y1, x2, y2) {
+    var x, y, dx, dy,p,const1,const2;
+    y = y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
+    p = 2*dy - dx;
+    const1 = 2*dy;
+    const2 = 2*(dy-dx);
+    for (x=x1; x<=x2; x++) {
+     putPixel(x, y);
+     if (p < 0)
+     p += const1; // p=p + 2dy
+     else {
+     p +=const2; //p=p+2dy-2dx
+     y++;
+     }
+     }
+    }
+function dashedLine(x1, y1, x2, y2) {
+    var x, y, dx, dy,p,const1,const2,dem, chieuDaiMoiDoan, khoangCachMoiDoan;
+    y = y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
+    p = 2*dy - dx;
+    const1 = 2*dy;
+    const2 = 2*(dy-dx);
+    dem=0;
+    chieuDaiMoiDoan=6;
+    khoangCachMoiDoan=2;
+    for (x=x1; x<=x2; x++) {
+     dem++;
+     if (dem<=chieuDaiMoiDoan) putPixel(x, y);
+     else
+     {
+         if (dem>chieuDaiMoiDoan+khoangCachMoiDoan)
+         {
+            //reset bien dem
+            dem=1;
+            putPixel(x,y);
+         }
+     }
+
+     if (p < 0)
+     p += const1; // p=p + 2dy
+     else {
+     p +=const2; //p=p+2dy-2dx
+     y++;
+     }
+     }
+}
+function dashDotLine(x1, y1, x2, y2) {
+    // DDA algorithm
+    var x, y, dx, dy,p,const1,const2,dem, chieuDaiMoiDoan, khoangCachMoiDoan;
+    y = y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
+    p = 2*dy - dx;
+    const1 = 2*dy;
+    const2 = 2*(dy-dx);
+    dem=0;
+    chieuDaiMoiDoan=6;
+    khoangCachMoiDoan=2
+
+    for (x=x1; x<=x2; x++) {
+        dem++;
+        if (dem<=chieuDaiMoiDoan) putPixel(x, y);
+        else
+        {
+            if ((dem>chieuDaiMoiDoan && dem<=chieuDaiMoiDoan+khoangCachMoiDoan)||(dem>chieuDaiMoiDoan+khoangCachMoiDoan+1&&dem<=chieuDaiMoiDoan+2*khoangCachMoiDoan+1)) //vẽ 2 khoảng trăng 2 bên chấm
+            {
+                //không putPixel để vẽ khoảng trắng
+            }
+            else
+            {
+                if (dem==chieuDaiMoiDoan+khoangCachMoiDoan+1)
+                {
+                    putPixel(x,y); //vẽ chấm
+                }
+                else
+                {
+                    dem=1;
+                    putPixel(x,y);
+                }
+            }
+        }
+        
+        if (p < 0)
+        p += const1; // p=p + 2dy
+        else {
+        p +=const2; //p=p+2dy-2dx
+        y++;
+        }
+    }
+}       
+
+function dash2DotLine(x1, y1, x2, y2) {
+    // DDA algorithm
+    var x, y, dx, dy,p,const1,const2,dem, chieuDaiMoiDoan, khoangCachMoiDoan;
+    y = y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
+    p = 2*dy - dx;
+    const1 = 2*dy;
+    const2 = 2*(dy-dx);
+    dem=0;
+    chieuDaiMoiDoan=6;
+    khoangCachMoiDoan=2
+
+    for (x=x1; x<=x2; x++) {
+        dem++;
+        if (dem<=chieuDaiMoiDoan) putPixel(x, y);
+        else
+        {
+            if ((dem>chieuDaiMoiDoan && dem<=chieuDaiMoiDoan+khoangCachMoiDoan)
+            ||(dem>chieuDaiMoiDoan+khoangCachMoiDoan+1&&dem<=chieuDaiMoiDoan+2*khoangCachMoiDoan+1)
+            ||(dem>chieuDaiMoiDoan+2*khoangCachMoiDoan+2&&dem<=chieuDaiMoiDoan+3*khoangCachMoiDoan+2)) //vẽ 2 khoảng trăng 2 bên chấm
+            {
+                //không putPixel để vẽ khoảng trắng
+            }
+            else
+            {
+                if ((dem==chieuDaiMoiDoan+khoangCachMoiDoan+1)||(dem==chieuDaiMoiDoan+2*khoangCachMoiDoan+2))
+                {
+                    putPixel(x,y); //vẽ chấm
+                }
+                else
+                {
+                    dem=1;
+                    putPixel(x,y);
+                }
+            }
+        }
+        
+        if (p < 0)
+        p += const1; // p=p + 2dy
+        else {
+        p +=const2; //p=p+2dy-2dx
+        y++;
+        }
+    }
+}    
+
+function drawArrow(x1, y1, x2, y2) {
+    var x, y, dx, dy,p,const1,const2;
+    y = y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
+    p = 2*dy - dx;
+    const1 = 2*dy;
+    const2 = 2*(dy-dx);
+    for (x=x1; x<=x2; x++) {
+     putPixel(x, y);
+     if (p < 0)
+     p += const1; // p=p + 2dy
+     else {
+     p +=const2; //p=p+2dy-2dx
+     y++;
+     }
+     }
+     putPixel(x2-1,y2-1);
+     putPixel(x2-1,y2+1);
+    }
 
 function drawRectangle(x, y, w, h) {
     let x1 = x + w,
@@ -142,23 +317,39 @@ window.addEventListener('mouseup', function(evt){
 document.getElementById('testBtn').addEventListener('click', function(evt) {
     ctx.fillStyle = '#' + Math.random().toString(16).slice(-6);
 
-    drawLine(
-        Math.random() * canvas.width,
-        Math.random() * canvas.height,
-        Math.random() * canvas.width,
-        Math.random() * canvas.height
-        );
+    // drawLine(
+    //     Math.random() * canvas.width,
+    //     Math.random() * canvas.height,
+    //     Math.random() * canvas.width,
+    //     Math.random() * canvas.height
+    //     );
     let x = Math.random() * canvas.width,
-        y = Math.random() * canvas.height;
-    drawRectangle(
-        x, y,
-        Math.random() * (canvas.width),
-        Math.random() * (canvas.height)
-        );
-    drawCircle(
-        x, y,
-        Math.random() * canvas.height
-        );
+        y = Math.random() * canvas.height,
+        m = Math.random() * (canvas.width/5),
+        n = Math.random() * (canvas.height/5);
+        p = Math.random() * (canvas.width/5),
+        q = Math.random() * (canvas.height/5);
+    //console.log(Math.round(x),Math.round(y),Math.round(z),Math.round(t));
+    // for (var i=1; i<=160; i++)
+    // {
+    //     for (var j=1;j<=100;j++)
+    //     {
+    //         putPixel(i,j);
+    //     }
+    // }
+    dashedLine(Math.round(m),Math.round(n),Math.round(p),Math.round(q));
+    // dashDotLine(Math.round(m),Math.round(n),Math.round(p),Math.round(q));
+    // dash2DotLine(Math.round(m),Math.round(n),Math.round(p),Math.round(q));
+    // drawArrow(Math.round(m),Math.round(n),Math.round(p),Math.round(n));
+    // drawRectangle(
+    //     x, y,
+    //     Math.random() * (canvas.width),
+    //     Math.random() * (canvas.height)
+    //     );
+    // drawCircle(
+    //     x, y,
+    //     Math.random() * canvas.height
+    //     );
 });
 
 document.getElementById('clearBtn').addEventListener('click', function(evt) {
