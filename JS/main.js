@@ -1,1 +1,3 @@
-drawGrid();
+// window.onload = function() {
+//     drawGrid();
+// }

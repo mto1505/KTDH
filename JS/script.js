@@ -46,14 +46,14 @@ function getMousePos(canvas, evt) {
 
 function getPixelPos(a, b) {
     return {
-        x: (Math.ceil(a / pSize) - 1) * pSize,
-        y: (Math.ceil(b / pSize) - 1) * pSize
+        x: (Math.ceil(a / pSize) - 1) * pSize + 1,
+        y: (Math.ceil(b / pSize) - 1) * pSize + 1
     }
 }
 
 function fillPixel(x, y) {
     pos = getPixelPos(x, y);
-    ctx.fillRect(pos.x, pos.y, pSize, pSize);
+    ctx.fillRect(pos.x, pos.y, pSize - 1, pSize - 1);
 }
 
 function drawLine(x0, y0, x1, y1) {

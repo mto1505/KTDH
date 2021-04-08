@@ -1,37 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Drawing</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Drawing</title>
 </head>
-<body>
-    <header class="header">
-        <p>Bài tập/Đồ án</p>
-    </header>
-    <nav class="navigation"></nav>
-    <div class="content">
-        <div class="btnContainer">
-            <button id="testBtn">Test</button>
-            <button id="clearBtn">Clear</button>
-            <button id="saveBtn">Save</button>
-            <button id="resetBtn">Reset</button>
 
-        </div>
-        <canvas id='canvas' height="500", width="800"></canvas>
-        
+<body>
+  <header class="header"></header>
+  <nav class="navigation"></nav>
+  <div class="content">
+    <div class="menu">
+      <div class="menu-container">
+        <div class="menu-button extras-menu-button" tabindex="-1">Files</div>
+      </div>
+      <div class="menu-container">
+        <div class="menu-button extras-menu-button" tabindex="-1">Edit</div>
+      </div>
+      <div class="menu-container">
+        <div class="menu-button extras-menu-button" tabindex="-1">Image</div>
+      </div>
+      <div class="menu-container">
+        <div class="menu-button extras-menu-button" tabindex="-1">Help</div>
+      </div>
+      <div class="menu-container">
+        <div class="menu-button extras-menu-button" tabindex="-1">About</div>
+      </div>
+      <div class="menu-container">
+        <div class="menu-button extras-menu-button" tabindex="-1">Files</div>
+      </div>
     </div>
-    <footer class="footer">
-        <p>Các thành viên:</p>
-        <ul>Lê Đình Triều</ul>
-        <ul>Nguyễn Tân Thiên</ul>
-        <ul>Nguyễn Thanh Tú</ul>
-        <ul>Nguyễn Mạnh Tường</ul>
-        <ul>Bùi Minh Tơ</ul>
-    </footer>
+    <div class="horizontal">
+      <div style="display: flex;flex-direction: column;">
+        <div class="tool">
+          <button id="testBtn">Test</button>
+          <button id="clearBtn">Clear</button>
+          <button id="saveBtn">Save</button>
+          <button id="resetBtn">Reset</button>
+        </div>
+        <div class="homework">
+          <button class="dropbtn">Homework</button>
+          <div class="dropdown-content">
+            <a href="#">bt 1</a>
+            <a href="#">bt 2</a>
+            <a href="#">bt 3</a>
+          </div>
+        </div>
+      </div>
+      <canvas id='canvas' height="600" , width="800"></canvas>
+      <!-- <div class="component-color" touch-action="none" style="position: relative; left: 3px;">
+                <div class="color-box">
+                    <div class="palette" style="width: 224px;">
+                        <div class="color-button"><canvas style="background-color: rgb(0,0,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,128,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,0,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,128,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,128,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,128,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,0,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,0,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,128,64); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,64,64); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,128,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,64,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(64,0,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,64,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(255,255,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(192,192,192); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(255,0,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(255,255,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,255,0); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,255,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,0,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(255,0,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(255,255,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(0,255,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,255,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(128,128,255); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(255,0,128); pointer-events: none;" width="13" height="13"></canvas></div>
+                        <div class="color-button"><canvas style="background-color: rgb(255,128,64); pointer-events: none;" width="13" height="13"></canvas></div>
+                    </div>
+                </div>
+            </div> -->
+    </div>
+  <footer class="footer">
+    <p>Các thành viên:</p>
+    <div style="display: flex columns; text-align: left;">
+      <ul>Lê Đình Triều</ul>
+      <ul>Nguyễn Tân Thiên</ul>
+      <ul><s>Nguyễn Thanh Tú</s></ul>
+      <ul>Nguyễn Mạnh Tường</ul>
+      <ul>Bùi Minh Tơ</ul>
+    </div>
+  </footer>
 </body>
 <script src="JS/script.js"></script>
 <script src="JS/main.js"></script>
+
 </html>
