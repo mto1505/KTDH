@@ -1,8 +1,8 @@
-window.onload = function() {
+window.onload = function () {
     drawGrid();
 
     document.querySelectorAll('.dropdown-content > div').forEach((ele) => {
-        switch(ele.id) {
+        switch (ele.id) {
             case 'BT1':
                 console.log('Not implemented');
                 break;
@@ -17,9 +17,6 @@ window.onload = function() {
                 break;
             default:
                 console.log('Not implemented');
-                
         }
-        
     })
-
 }
