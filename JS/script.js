@@ -269,6 +269,88 @@ function drawCircle(x0, y0, radius) {
         }
     }
 }
+function dashCircle(xc, yc, Radius)
+{
+    var x, y, p,dem, chieuDaiMoiDoan, khoangCachMoiDoan;
+    x = 0;
+    y = Radius;
+    p = 3 - 2 * Radius;
+    dem=0;
+    chieuDaiMoiDoan=3;
+    khoangCachMoiDoan=1;
+    // putPixel(xc + Radius, yc + 0);
+    // putPixel(xc - Radius, yc - 0);
+    // putPixel(xc -0, yc +Radius);
+    // putPixel(xc +0, yc -Radius);
+    while (x < y){
+    if (p < 0)
+    p += 4 * x + 6;
+    else{
+    p += 4 * (x-y) + 10;
+    y--;
+    }
+    x++;
+    dem++;
+    if (dem>=1&&dem<=chieuDaiMoiDoan)
+    {
+        putPixel(xc + x, yc + y);
+        putPixel(xc - x, yc - y);
+        putPixel(xc -y, yc +x);
+        putPixel(xc +y, yc -x);
+        putPixel(xc + y, yc + x);
+        putPixel(xc - y, yc - x);
+        putPixel(xc -x, yc +y);
+        putPixel(xc +x, yc -y);
+    }
+    else
+    {
+        if (dem>chieuDaiMoiDoan&&dem<=khoangCachMoiDoan)
+        {
+            //không putPixel
+        }
+        else
+        {
+            dem=0;
+        }
+    }
+    }
+    putPixel(xc + y, yc + y);
+    putPixel(xc - y, yc - y);
+    putPixel(xc -y, yc +y);
+    putPixel(xc +y, yc -y);
+}
+function bresenhamCircle(xc, yc, Radius)
+{
+    var x, y, p;
+    x = 0;
+    y = Radius;
+    p = 3 - 2 * Radius;
+    putPixel(xc + Radius, yc + 0);
+    putPixel(xc - Radius, yc - 0);
+    putPixel(xc -0, yc +Radius);
+    putPixel(xc +0, yc -Radius);
+    while (x < y){
+    if (p < 0)
+    p += 4 * x + 6;
+    else{
+    p += 4 * (x-y) + 10;
+    y--;
+    }
+    x++;
+    putPixel(xc + x, yc + y);
+    putPixel(xc - x, yc - y);
+    putPixel(xc -y, yc +x);
+    putPixel(xc +y, yc -x);
+    putPixel(xc + y, yc + x);
+    putPixel(xc - y, yc - x);
+    putPixel(xc -x, yc +y);
+    putPixel(xc +x, yc -y);
+    }
+    putPixel(xc + y, yc + y);
+    putPixel(xc - y, yc - y);
+    putPixel(xc -y, yc +y);
+    putPixel(xc +y, yc -y);
+}
 
 canvas.addEventListener('click', function (evt) {
     var mousePos = getMousePos(canvas, evt);

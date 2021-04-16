@@ -15,6 +15,11 @@ window.onload = function () {
                     drawRectangle(300, 300, 100, 200);
                 });
                 break;
+            case 'BT3':
+                ele.addEventListener('click', (evt) => {
+                    dashCircle(50,50,25);
+                });
+                break;
             default:
                 console.log('Not implemented');
         }
