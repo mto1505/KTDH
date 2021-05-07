@@ -1,0 +1,75 @@
+[33mcommit a6aeb861aecd77f153e97373ae13d55c63266e5d[m
+Merge: 5015c76 3fce138
+Author: Walker <skywalker2834@gmail.com>
+Date:   Fri Apr 9 22:49:36 2021 +0700
+
+    Merge branch 'master' of https://github.com/WalterClementsJr/KTDH
+    
+    # Conflicts:
+    #       JS/main.js
+    #       index.html
+
+[33mcommit 5015c76a4379ceaa4115a0458d1b996978382584[m
+Merge: 717c0dd 0c0c63f
+Author: Walker <skywalker2834@gmail.com>
+Date:   Thu Apr 8 11:11:37 2021 +0700
+
+    Merge branch 'master' of https://github.com/WalterClementsJr/KTDH
+
+[33mcommit 3fce1387623483531a5dd27be8c5f1cb23ee28ab[m
+Merge: 717c0dd 0c0c63f
+Author: Walker <skywalker2834@gmail.com>
+Date:   Thu Apr 8 11:11:37 2021 +0700
+
+    Merge branch 'master' of https://github.com/WalterClementsJr/KTDH
+
+[33mcommit 717c0dd87a941470be23012e580278ecc00cf8ef[m
+Author: Walker <skywalker2834@gmail.com>
+Date:   Thu Apr 8 11:08:19 2021 +0700
+
+    Edit html, css, js
+    
+    Add elements to html
+
+[33mcommit 0c0c63fec21563fd4fb4e93afdef41d2ce18041b[m
+Author: tuong1008 <tuong100852@gmail.com>
+Date:   Wed Apr 7 16:42:49 2021 +0700
+
+    Làm hết BT 2, dùng thuật toán BresenHem, vấn đề là chỉ vẽ được đoạn thẳng có toạ độ điểm đầu và điểm cuối tăng dần
+
+[33mcommit abb99faf9b95a97c483c4fec98df2cdee440a265[m
+Author: WalterClementsJr <61227405+WalterClementsJr@users.noreply.github.com>
+Date:   Sun Apr 4 22:01:27 2021 +0700
+
+    Update README.md
+
+[33mcommit 5309d61c2b2696b8756452e0451fbb037527bb98[m
+Author: Walker <skywalker2834@gmail.com>
+Date:   Sun Apr 4 17:22:58 2021 +0700
+
+    Change line drawing algorithm, add draw rectangle and circle functions
+
+[33mcommit 296ef01998c4982e35ac791f381648101a473c30[m
+Merge: 2212b3f 64325ee
+Author: Walker <skywalker2834@gmail.com>
+Date:   Sat Apr 3 21:57:25 2021 +0700
+
+    Merge branch 'master' of https://github.com/WalterClementsJr/KTDH
+
+[33mcommit 2212b3f7cc8abdca52553ff5ccf5fd71cc0a232b[m
+Author: Walker <skywalker2834@gmail.com>
+Date:   Sat Apr 3 21:56:25 2021 +0700
+
+    Fix + add buttons!
+
+[33mcommit 64325ee8e1b37b00d6cdcfdcc8d3208de0fefcda[m
+Author: WalterClementsJr <61227405+WalterClementsJr@users.noreply.github.com>
+Date:   Sat Apr 3 17:20:52 2021 +0700
+
+    Create README.md
+
+[33mcommit 6d6cba0efe07b72ce20b98216cae877a5a69a6e3[m
+Author: Walker <skywalker2834@gmail.com>
+Date:   Sat Apr 3 17:10:39 2021 +0700
+
+    Demo version.
